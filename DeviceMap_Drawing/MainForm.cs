@@ -270,8 +270,8 @@ namespace DeviceMap_Drawing
 
                 AddPair("Safety_Distance", "Safety Distance", 1);
                 AddPair("Wafer_Real_Size", "Wafer Real Size", 1);
-                AddPair("PKG_X_Size", "PKG X Size", 1);
-                AddPair("PKG_Y_Size", "PKG Y Size", 1);
+                AddPair("PKG_X_Size", "PKG X Size", 3);
+                AddPair("PKG_Y_Size", "PKG Y Size", 3);
                 AddPair("PKG_X_Pitch", "PKG X Pitch", 3);
                 AddPair("PKG_Y_Pitch", "PKG Y Pitch", 3);            
             }
