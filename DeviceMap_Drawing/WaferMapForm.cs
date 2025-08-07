@@ -113,9 +113,17 @@ namespace DeviceMap_Drawing
                         centerX - waferRadius - textSize.Width - 10,
                         labelY - textSize.Height / 2); // 위치
                 }
+                
+                using (Font boldFont = new Font(this.Font.FontFamily, 10, FontStyle.Bold))
+                {
+                    // 요약 정보
+                    string summary = $"총 PKG 수: {_totalChips} / 비어있는 PKG: {_emptyChips}";
+                    string countInfo = $"PKG X 개수: {_values.PKG_X_Count}, PKG Y 개수: {_values.PKG_Y_Count}";
+                    // 출력 위치 및 스타일
+                    g.DrawString(summary, boldFont, Brushes.Navy, 1000, this.ClientSize.Height - 960);
+                    g.DrawString(countInfo, boldFont, Brushes.Red, 1002, this.ClientSize.Height - 930);
+                }
 
-                string summary = $"총 Chip 수: {_totalChips} / 비어있는 Chip: {_emptyChips}";
-                g.DrawString(summary, this.Font, Brushes.DarkBlue, 1000, this.ClientSize.Height - 950);
             }
             catch { }            
         }
@@ -140,8 +148,13 @@ namespace DeviceMap_Drawing
             PKG_Y_Size = (float)values["PKG_Y_Size"];
             PKG_X_Pitch = (float)values["PKG_X_Pitch"];
             PKG_Y_Pitch = (float)values["PKG_Y_Pitch"];
-            PKG_X_Count = (int)values["PKG_X_Count"];
-            PKG_Y_Count = (int)values["PKG_Y_Count"];
+
+            // PKG X, Y 개수 도출
+            float usableRadius = (WaferRealSize / 2f) - SafetyDistance;
+            
+            // pitch 기준 중심 간격 → 반지름 내 몇 개가 들어갈 수 있는지 계산
+            PKG_X_Count = (int)((usableRadius * 2) / PKG_X_Pitch);
+            PKG_Y_Count = (int)((usableRadius * 2) / PKG_Y_Pitch);
         }
     }
 }

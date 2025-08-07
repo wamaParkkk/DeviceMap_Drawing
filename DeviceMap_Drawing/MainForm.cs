@@ -233,7 +233,33 @@ namespace DeviceMap_Drawing
                     nud.Increment = (decimalPlaces == 3) ? 0.001M : 0.1M;
                     nud.Minimum = 0;
                     nud.Maximum = 1000;
-                    nud.Value = (decimalPlaces == 3) ? 0.100M : 1.0M;
+                    
+                    //nud.Value = (decimalPlaces == 3) ? 0.100M : 1.0M;
+                    switch (key)
+                    {
+                        case "Wafer_Real_Size":
+                            nud.Value = 328.0M;
+                            break;
+                        case "Safety_Distance":
+                            nud.Value = 25.0M;
+                            break;
+                        case "PKG_X_Size":
+                            nud.Value = 1.0M;
+                            break;
+                        case "PKG_Y_Size":
+                            nud.Value = 1.0M;
+                            break;
+                        case "PKG_X_Pitch":
+                            nud.Value = 1.000M;
+                            break;
+                        case "PKG_Y_Pitch":
+                            nud.Value = 1.000M;
+                            break;
+                        default:
+                            nud.Value = (decimalPlaces == 3) ? 0.100M : 1.0M;
+                            break;
+                    }
+
                     nud.Width = nudW;
                     nud.Location = new Point(nudX, nudY);
                     nud.Name = key + "_Nud";
@@ -276,8 +302,7 @@ namespace DeviceMap_Drawing
                 string[] keys = {
                 "Safety_Distance", "Wafer_Real_Size",
                 "PKG_X_Size", "PKG_Y_Size",
-                "PKG_X_Pitch", "PKG_Y_Pitch",
-                "PKG_X_Count", "PKG_Y_Count"
+                "PKG_X_Pitch", "PKG_Y_Pitch"                
                 };
 
                 Dictionary<string, decimal> result = new Dictionary<string, decimal>();
